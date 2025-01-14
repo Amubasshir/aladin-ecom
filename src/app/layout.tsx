@@ -5,6 +5,9 @@ import { Geist, Geist_Mono, Lato } from 'next/font/google';
 //Global styles
 import './globals.css';
 
+//Theme Provider
+import { ThemeProvider } from 'next-themes';
+
 //Fonts
 const lato = Lato({
   weight: ['400', '700'],
@@ -45,7 +48,14 @@ export default function RootLayout({
       <body
         className={`${lato.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

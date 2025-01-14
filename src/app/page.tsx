@@ -1,8 +1,12 @@
+import ThemeToggle from '@/components/shared/theme-toggle';
 import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
-    <div>
+    <div className="p-5">
+      <div className="flex justify-end w-102">
+        <ThemeToggle />
+      </div>
       <h1 className="text-2xl text-red-500">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
         voluptatem magni id incidunt harum eius. Unde corrupti libero laborum
