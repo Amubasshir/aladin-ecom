@@ -1,6 +1,5 @@
 'use client';
 
-// UI Components
 import { useTheme } from 'next-themes';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs';
 import { Button } from '../ui/button';

@@ -1,10 +1,12 @@
 import ThemeToggle from '@/components/shared/theme-toggle';
 import { Button } from '@/components/ui/button';
+import { UserButton } from '@clerk/nextjs';
 
 export default function Home() {
   return (
     <div className="p-5">
-      <div className="flex justify-end w-102">
+      <div className="flex justify-end gap-x-5 w-100">
+        <UserButton />
         <ThemeToggle />
       </div>
       <h1 className="text-2xl text-red-500">
