@@ -13,7 +13,7 @@ async function AdminDashboardLayout({
   if (!user || user.privateMetadata.role !== 'ADMIN') redirect('/');
   return (
     <div className="w-full h-full">
-      <CustomSidebar />
+      <CustomSidebar isAdmin />
       <div className="w-full ml-[300px]">
         <Header />
         <div className="w-full mt-[75px] p-4">{children}</div>
