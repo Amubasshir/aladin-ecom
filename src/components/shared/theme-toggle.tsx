@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 import { BsMoonStarsFill, BsSunFill } from 'react-icons/bs';
 import { Button } from '../ui/button';
 import {
@@ -11,7 +12,27 @@ import {
 } from '../ui/dropdown-menu';
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  // Wait for component to mount to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
+  // Determine which icon to show based on theme and system preference
+  const shouldShowDarkIcon = () => {
+    if (theme === 'system') {
+      return systemTheme === 'dark';
+    }
+    return theme === 'dark';
+  };
+
+  const isDark = shouldShowDarkIcon();
 
   return (
     <DropdownMenu>
@@ -25,7 +46,7 @@ function ThemeToggle() {
           <BsSunFill
             className={`absolute h-[1.4rem] w-[1.4rem] text-yellow-500 transition-transform duration-300 ease-in-out
         ${
-          theme === 'dark'
+          isDark
             ? 'scale-0 rotate-180'
             : 'group-hover:scale-125 group-hover:rotate-180'
         }`}
@@ -34,7 +55,7 @@ function ThemeToggle() {
           <BsMoonStarsFill
             className={`absolute h-[1.4rem] w-[1.4rem] text-blue-500 transition-transform duration-300 ease-in-out
         ${
-          theme === 'dark'
+          isDark
             ? 'group-hover:scale-125 group-hover:rotate-260'
             : 'scale-0 rotate-180'
         }`}
